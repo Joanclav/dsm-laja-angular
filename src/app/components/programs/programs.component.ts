@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // ¡Importante para *ngFor!
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-programs',
   standalone: true,
