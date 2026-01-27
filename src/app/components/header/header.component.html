@@ -1,0 +1,70 @@
+<header class="sticky top-0 z-50 flex flex-col w-full shadow-lg">
+  
+  <div class="bg-dsm-dark text-white text-xs md:text-sm py-2 border-b border-white/10">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-2">
+      
+      <div class="flex items-center gap-4 md:gap-6">
+        <div class="flex items-center gap-2 hover:text-gray-200 transition cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span>contacto&#64;dsmlaja.cl</span>
+        </div>
+        <div class="flex items-center gap-2 font-bold text-yellow-300 animate-pulse">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+          <span>URGENCIAS: 131</span>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center gap-2 opacity-90">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Laja, Región del Biobío, Chile</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white py-3 relative z-20">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <div class="relative w-16 h-16 md:w-20 md:h-20 flex-shrink-0">
+           <img src="images/logo-dsm.png" alt="Logo DSM" class="w-full h-full object-contain">
+        </div>
+        <div>
+          <h1 class="text-dsm-main text-xl md:text-2xl font-bold leading-none">DSM Laja</h1>
+          <p class="text-gray-500 text-xs md:text-sm">Departamento de Salud Municipal</p>
+        </div>
+      </div>
+      
+      <button class="md:hidden text-dsm-main p-2" (click)="toggleMenu()">
+        <svg *ngIf="!isOpen" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <svg *ngIf="isOpen" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 18 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="bg-dsm-main text-white hidden md:block shadow-inner relative z-10">
+    <nav class="container mx-auto px-4 flex">
+      <a href="#" class="px-5 py-3 hover:bg-dsm-dark font-medium transition duration-200">Inicio</a>
+      
+      <div class="group relative">
+        <button class="px-5 py-3 hover:bg-dsm-dark font-medium flex items-center gap-1 transition duration-200 cursor-pointer">
+          Pedir Hora 
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="absolute top-full left-0 bg-white text-gray-800 shadow-xl w-56 hidden group-hover:block py-2 border-t-4 border-dsm-main z-50">
+          <a href="#" class="block px-4 py-3 hover:bg-gray-50 hover:text-dsm-main">Reserva Online</a>
+          <a href="#" class="block px-4 py-3 hover:bg-gray-50 hover:text-dsm-main">Consulta Estado</a>
+        </div>
+      </div>
+
+      <a href="#horarios" class="px-5 py-3 hover:bg-dsm-dark font-medium transition duration-200">Horarios</a>
+      <a href="#noticias" class="px-5 py-3 hover:bg-dsm-dark font-medium transition duration-200">Noticias</a>
+      <a href="#contacto" class="px-5 py-3 hover:bg-dsm-dark font-medium transition duration-200">Contacto</a>
+    </nav>
+  </div>
+
+  <div *ngIf="isOpen" class="md:hidden bg-dsm-dark text-white border-t border-white/20 p-4 flex flex-col gap-2 shadow-inner">
+    <a href="#" class="block py-2 px-3 rounded hover:bg-white/10" (click)="isOpen = false">Inicio</a>
+    <a href="#horarios" class="block py-2 px-3 rounded hover:bg-white/10" (click)="isOpen = false">Horarios</a>
+    <a href="#contacto" class="block py-2 px-3 rounded hover:bg-white/10 font-bold" (click)="isOpen = false">Contacto</a>
+  </div>
+
+</header>
