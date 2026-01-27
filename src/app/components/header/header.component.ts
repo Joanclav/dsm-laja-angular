@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Importante para *ngIf
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +8,9 @@ import { CommonModule } from '@angular/common'; // Importante para *ngIf
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
-  isOpen = false; // Estado del menú móvil
+  isOpen = false;
 
   toggleMenu() {
     this.isOpen = !this.isOpen;
   }
-} 
+}

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Necesario para formularios
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -14,8 +14,7 @@ export class ContactComponent {
   message = '';
 
   onSubmit(event: Event) {
-    event.preventDefault(); // Evita que la página se recargue
-    // Aquí conectarías con Formspree real si quisieras
+    event.preventDefault();
     this.isSubmitted = true;
   }
 }

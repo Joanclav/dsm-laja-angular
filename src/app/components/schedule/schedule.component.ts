@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // <--- 1. IMPORTAR ESTO
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-schedule',
   standalone: true,
-  imports: [CommonModule], // <--- 2. AGREGARLO AQUÍ
+  imports: [CommonModule],
   templateUrl: './schedule.component.html',
 })
 export class ScheduleComponent {
-  // ... tu lista de centros sigue aquí igual ...
+
   centers = [
     { name: "🏥 CGR", weekday: "08:15 - 17:03", weekend: "Cerrado" },
     { name: "🏥 CCR", weekday: "08:15 - 17:03", weekend: "Cerrado" },
