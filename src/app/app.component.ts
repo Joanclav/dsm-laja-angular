@@ -5,6 +5,7 @@ import { HeroComponent } from './components/hero/hero.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { NewsComponent } from './components/news/news.component';
+import { ProgramsComponent } from './components/programs/programs.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { NewsComponent } from './components/news/news.component';
     HeroComponent,
     ScheduleComponent,
     ContactComponent,
+    ProgramsComponent,
     NewsComponent
   ],
   templateUrl: './app.component.html',

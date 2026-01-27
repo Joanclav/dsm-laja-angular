@@ -1,8 +1,8 @@
 <header class="sticky top-0 z-50 flex flex-col w-full shadow-lg">
-  
+
   <div class="bg-dsm-dark text-white text-xs md:text-sm py-2 border-b border-white/10">
     <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-2">
-      
+
       <div class="flex items-center gap-4 md:gap-6">
         <div class="flex items-center gap-2 hover:text-gray-200 transition cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -32,7 +32,7 @@
           <p class="text-gray-500 text-xs md:text-sm">Departamento de Salud Municipal</p>
         </div>
       </div>
-      
+
       <button class="md:hidden text-dsm-main p-2" (click)="toggleMenu()">
         <svg *ngIf="!isOpen" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
         <svg *ngIf="isOpen" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 18 12"/></svg>
@@ -43,10 +43,10 @@
   <div class="bg-dsm-main text-white hidden md:block shadow-inner relative z-10">
     <nav class="container mx-auto px-4 flex">
       <a href="#" class="px-5 py-3 hover:bg-dsm-dark font-medium transition duration-200">Inicio</a>
-      
+
       <div class="group relative">
         <button class="px-5 py-3 hover:bg-dsm-dark font-medium flex items-center gap-1 transition duration-200 cursor-pointer">
-          Pedir Hora 
+          Pedir Hora
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
         </button>
         <div class="absolute top-full left-0 bg-white text-gray-800 shadow-xl w-56 hidden group-hover:block py-2 border-t-4 border-dsm-main z-50">
@@ -57,6 +57,7 @@
 
       <a href="#horarios" class="px-5 py-3 hover:bg-dsm-dark font-medium transition duration-200">Horarios</a>
       <a href="#noticias" class="px-5 py-3 hover:bg-dsm-dark font-medium transition duration-200">Noticias</a>
+      <a href="#programas" class="px-5 py-3 hover:bg-dsm-dark font-medium transition duration-200">Programas</a>
       <a href="#contacto" class="px-5 py-3 hover:bg-dsm-dark font-medium transition duration-200">Contacto</a>
     </nav>
   </div>
