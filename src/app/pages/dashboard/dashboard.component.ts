@@ -1,11 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core'; // Agregamos OnInit
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { Auth, signOut } from '@angular/fire/auth';
+import { Firestore, doc, getDoc } from '@angular/fire/firestore'; // Importamos Firestore
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+  private auth = inject(Auth);
+  private firestore = inject(Firestore);
+  private router = inject(Router);
 
+  isAdmin: boolean = false; // Aquí guardaremos el secreto
+  userName: string = '';
+
+  async ngOnInit() {
+    const user = this.auth.currentUser;
+    if (user) {
+      // 1. Buscamos los datos del usuario en la base de datos
+      const docRef = doc(this.firestore, 'usuarios', user.uid);
+      const snap = await getDoc(docRef);
+
+      if (snap.exists()) {
+        const data = snap.data();
+        this.userName = data['nombre'];
+        // 2. Verificamos si es ADMIN
+        this.isAdmin = (data['rol'] === 'admin');
+      }
+    }
+  }
+
+  async logout() {
+    await signOut(this.auth);
+    this.router.navigate(['/login']);
+  }
 }
