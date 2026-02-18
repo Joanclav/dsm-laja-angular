@@ -1,39 +1,65 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service'; // Importamos el cerebro
-import { Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { Auth, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  template: `
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
-      <div class="bg-white p-8 rounded-xl shadow-lg w-96 text-center">
-
-        <h2 class="text-2xl font-bold text-dsm-main mb-6">Iniciar Sesión</h2>
-
-        <input type="email" placeholder="Correo" class="w-full p-2 border rounded mb-4 focus:border-dsm-main outline-none">
-        <input type="password" placeholder="Contraseña" class="w-full p-2 border rounded mb-6 focus:border-dsm-main outline-none">
-
-        <button (click)="onLogin()" class="w-full bg-dsm-main text-white py-2 rounded hover:bg-green-700 font-bold transition duration-200">
-          Ingresar
-        </button>
-
-      </div>
-    </div>
-  `
+  imports: [CommonModule, FormsModule],
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
+  email = '';
+  password = '';
+  loading = false;
 
-  // Inyectamos el AuthService para cambiar el estado y Router para movernos
-  constructor(private auth: AuthService, private router: Router) {}
+  private auth = inject(Auth);
+  private firestore = inject(Firestore);
+  private router = inject(Router);
 
-  onLogin() {
-    console.log('¡Click recibido! Intentando iniciar sesión...'); // <--- ESTO SALDRÁ EN LA CONSOLA
+  async onLogin() {
+    this.loading = true;
 
-    this.auth.login(); // Llamamos al servicio
+    try {
+      // 1. Intentar loguear con correo y contraseña
+      const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.password);
+      const user = userCredential.user;
 
-    // Forzamos la navegación por si el servicio no lo hace
-    // (Aunque el servicio ya debería tener esta línea)
-    // this.router.navigate(['/accesos']);
+      // 2. Buscar los datos extra en la Base de Datos (Rol y Estado)
+      const docRef = doc(this.firestore, 'usuarios', user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+
+        // 3. REGLA DE ORO: Verificar si está aprobado
+        if (data['estado'] === 'PENDIENTE') {
+          await signOut(this.auth); // Lo sacamos inmediatamente
+          alert('Tu cuenta aún está en revisión. Espera a que un administrador te apruebe.');
+          this.loading = false;
+          return;
+        }
+
+        // 4. Redirigir según el ROL
+        if (data['rol'] === 'admin') {
+          this.router.navigate(['/admin']); // Panel de Jefe
+        } else {
+          this.router.navigate(['/accesos']);
+        }
+
+      } else {
+        // Si el usuario existe en Auth pero no en la Base de Datos (raro, pero posible)
+        alert('Error: No se encontraron datos de perfil.');
+      }
+
+    } catch (error: any) {
+      console.error(error);
+      alert('Error al ingresar: Verifique sus credenciales.');
+    } finally {
+      this.loading = false;
+    }
   }
 }
