@@ -37,6 +37,9 @@ yarn-error.log
 testem.log
 /typings
 
+# .gitignore
+src/environments/environment.ts
+
 # System files
 .DS_Store
 Thumbs.db
@@ -45,3 +48,4 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
+
