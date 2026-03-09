@@ -12,7 +12,7 @@ export class AuthService {
   login() {
     console.log('Servicio: Cambiando estado a Logueado');
     this.isLoggedIn.set(true);
-    this.router.navigate(['/accesos']); // <--- ¡ESTA LÍNEA ES CRÍTICA!
+    this.router.navigate(['/accesos']);
   }
 
   logout() {

@@ -24,34 +24,29 @@ export class LoginComponent {
     this.loading = true;
 
     try {
-      // 1. Intentar loguear con correo y contraseña
       const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.password);
       const user = userCredential.user;
 
-      // 2. Buscar los datos extra en la Base de Datos (Rol y Estado)
       const docRef = doc(this.firestore, 'usuarios', user.uid);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
         const data = docSnap.data();
 
-        // 3. REGLA DE ORO: Verificar si está aprobado
         if (data['estado'] === 'PENDIENTE') {
-          await signOut(this.auth); // Lo sacamos inmediatamente
+          await signOut(this.auth);
           alert('Tu cuenta aún está en revisión. Espera a que un administrador te apruebe.');
           this.loading = false;
           return;
         }
 
-        // 4. Redirigir según el ROL
         if (data['rol'] === 'admin') {
-          this.router.navigate(['/admin']); // Panel de Jefe
+          this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['/accesos']);
         }
 
       } else {
-        // Si el usuario existe en Auth pero no en la Base de Datos (raro, pero posible)
         alert('Error: No se encontraron datos de perfil.');
       }
 
