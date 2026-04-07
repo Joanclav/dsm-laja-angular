@@ -52,7 +52,6 @@ export class RegisterComponent {
         fechaRegistro: new Date()
       });
 
-      // 4. Éxito
       alert('¡Cuenta creada con éxito! Tu acceso está PENDIENTE de aprobación por el administrador.');
       this.router.navigate(['/']);
 
