@@ -15,5 +15,6 @@ export class ScheduleComponent {
     { name: "🏥 Posta Rural Puente Perales", weekday: "08:15 - 16:30", weekend: "Cerrado" },
     { name: "🏥 Posta Rural Santa Elena", weekday: "08:15 - 16:30", weekend: "Cerrado" },
     { name: "🏥 Posta Rural La Colonia", weekday: "08:15 - 16:30", weekend: "Cerrado" },
+    { name: "🏥 Farmacia Comunitaria", weekday: "08:15 - 16:30", weekend: "Cerrado" },
   ];
 }
