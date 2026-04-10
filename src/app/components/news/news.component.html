@@ -1,7 +1,18 @@
 <section id="noticias" class="container mx-auto px-4 py-16 bg-gray-50">
   <h2 class="text-3xl font-bold text-dsm-main text-center mb-10">Noticias Recientes</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <article *ngFor="let item of newsItems" class="bg-white p-6 rounded-lg shadow border-l-4 border-dsm-main">
+
+  <div
+    #carousel
+    (mousedown)="startDragging($event)"
+    (mouseup)="stopDragging()"
+    (mouseleave)="stopDragging()"
+    (mousemove)="moveEvent($event)"
+    [class.cursor-grabbing]="isDragging"
+    class="flex overflow-x-auto gap-6 no-scrollbar cursor-grab select-none"
+    style="will-change: scroll-position;"
+  >
+    <article *ngFor="let item of displayItems"
+             class="flex-none w-[300px] md:w-[400px] bg-white p-6 rounded-lg shadow border-l-4 border-dsm-main pointer-events-none">
       <span class="text-sm text-gray-500">{{ item.date }}</span>
       <h3 class="text-xl font-bold text-gray-800 mt-2 mb-2">{{ item.title }}</h3>
       <p class="text-gray-600">{{ item.desc }}</p>
